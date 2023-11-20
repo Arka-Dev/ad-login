@@ -1,0 +1,22 @@
+{
+    "SEND_OTP": {
+        "MANDATE_REQUEST": "Please send the valid request",
+        "FIELD_BLANK": "Please provide the {keyname}",
+        "MALFORM_EMAIL": "Malformed email",
+        "INCOMPLETE_MOBILE": "Incomplete mobile number",
+        "OTP_SUCCESS": "OTP has been sent",
+        "DATA_MISSING": "Provided {keyname} not found",
+        "DATA_MISMATCHED": "Provided {keyname1} not matched with provided {keyname2}"
+    },
+    "VERIFY_OTP": {
+        "FIELD_BLANK": "Please provide the {keyname}",
+        "SUCCESSFUL_API": "OTP verification successful.",
+        "MALFORM_EMAIL": "Malformed email",
+        "INCOMPLETE_MOBILE": "Incomplete mobile number",
+        "NO_RECORD": "No such record found for provided channel & sent to details. Please re-check.",
+        "INVALID_OTP": "Invalid OTP, please try again.",
+        "EXPIRED_OTP": "OTP has been expired, please try again.",
+        "DATA_MISSING": "Provided {keyname} not found",
+        "DATA_MISMATCHED": "Provided {keyname1} not matched with provided {keyname2}"
+    }
+}

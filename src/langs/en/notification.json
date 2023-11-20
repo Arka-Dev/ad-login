@@ -1,0 +1,10 @@
+{
+    "SEND_NOTIFICATION": {
+        "FIELD_BLANK": "Please provide the {keyname}",
+        "DATA_MISSING": "Provided {keyname} not found",
+        "DATA_MISMATCHED": "Provided {keyname1} not matched with provided {keyname2}",
+        "MALFORM_EMAIL": "Malformed email",
+        "INCOMPLETE_MOBILE": "Incomplete mobile number",
+        "SUCCESSFUL_API": "Notification sent successful."
+    }
+}

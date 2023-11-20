@@ -1,0 +1,6 @@
+{
+    "API_GENERIC_400": "Bad Request",
+    "API_GENERIC_200": "Here is your response",
+    "API_GENERIC_SUCCESS": "success",
+    "API_GENERIC_FAILED": "failed"
+}
