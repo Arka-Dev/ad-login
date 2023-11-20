@@ -1,0 +1,18 @@
+version: "3"
+
+networks:
+  default:
+    name: ad-login
+    external: true
+services:
+  ad-login-prod:
+    container_name: ad-login-prod
+    image: ad-login-prod
+    build: .
+    restart: always
+    ports:
+      - "5000:5000"
+    volumes:
+      - .:/src
+    env_file:
+      - prod.env
