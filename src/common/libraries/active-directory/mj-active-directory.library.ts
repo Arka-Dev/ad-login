@@ -5,14 +5,18 @@ import * as ldap from 'ldapjs';
 @Injectable()
 export class MjActiveDirectory {
 
-    private _ldapHost = '172.16.2.5';
+    private _ldapHost = '10.130.5.44';
     private _ldapPort = 389;
     private _domainEmail = 'metaljunction.com';
 
     protected client: any;
 
     async connect(){
-        this.client = ldap.createClient({ url: `ldap://${this._ldapHost}:${this._ldapPort}`, reconnect: true});
+        try {
+            this.client = ldap.createClient({ url: `ldap://${this._ldapHost}:${this._ldapPort}`, reconnect: true});
+        } catch(err) {
+            console.log('Error:', err)
+        }        
     }
 
     async authorize(username: string, password: string): Promise<{status:boolean, message: string}>{

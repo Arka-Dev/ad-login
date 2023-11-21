@@ -1,9 +1,9 @@
 version: "3"
 
+
 networks:
-  default:
-    name: ad-login
-    external: true
+  ad-login:
+    driver: bridge
 services:
   ad-login-prod:
     container_name: ad-login-prod
