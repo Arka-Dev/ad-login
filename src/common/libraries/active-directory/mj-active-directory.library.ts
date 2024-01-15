@@ -55,29 +55,36 @@ export class MjActiveDirectory {
     }
 
     async getUser(username: string): Promise<any> {
+        console.log('Username:', username)
         const options = {
-            scope: "sub",
-            filter: `(email=brojendra.das@mjunction.in)`
+            scope: 'sub',
+            // attributes: ['uid', 'dn', 'cn', 'mail'],
+            filter: `(mail=${username})`
         };
-        return this.client.search('dc=metaljunction,dc=com', options, (err, res) => {
-            if (err) {
-                console.log('Failed to search', err);
-            } 
+        return new Promise((resolve, reject)=> {
+            let found = false;
+            this.client.search('DC=metaljunction,DC=com', options, (err, res) => {           
             
-            res.on('searchEntry', entry => {
-                console.log(entry.object);
+                res.on('searchEntry', entry => {
+                    found = true;
+                    resolve(JSON.stringify(entry.pojo, null, 2));
+                });
+                res.on('searchReference', referral => {
+                    // console.log('referral: ' + referral.uris.join());
+                });
+                res.on('error', err => {
+                    reject(err.message);
+                });
+                res.on('end', result => {
+                    if (!found) {
+                        reject('No record founf');
+                    }
+                });
+                
             });
-            res.on('searchReference', referral => {
-                console.log('referral: ' + referral.uris.join());
-            });
-            res.on('error', err => {
-                console.error('error: ' + err.message);
-            });
-            res.on('end', result => {
-                console.log(result);
-            });
-            
+
         });
+        
     }
 
 }
