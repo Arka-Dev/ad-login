@@ -26,6 +26,7 @@ export class AuthService {
         const returnResponse: any = {...params};
         delete returnResponse.password;
         returnResponse.authorization = response?.status;
+        returnResponse.user = response?.user;
         return {
             response_code: response?.status === true ? HttpStatus.OK : HttpStatus.UNAUTHORIZED,
             message: response?.status === true ? "Login Successful" : response?.message,

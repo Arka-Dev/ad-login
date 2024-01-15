@@ -8,6 +8,7 @@ export class MjActiveDirectory {
     private _ldapHost = '172.16.2.5';
     private _ldapPort = 389;
     private _domainEmail = 'metaljunction.com';
+    private _primaryDomainEmail = 'mjunction.in';
 
     protected client: any;
 
@@ -19,16 +20,18 @@ export class MjActiveDirectory {
         }        
     }
 
-    async authorize(username: string, password: string): Promise<{status:boolean, message: string}>{
-        let status: boolean, message: string = '', user: any = {};
+    async authorize(username: string, password: string): Promise<{status:boolean, message: string, user: any}>{
+        let status: boolean, message: string = '', user: any = {}, tempName = username;
         if(!isEmail(username)){
+            tempName = `${username}@${this._primaryDomainEmail}`;
             username = `${username}@${this._domainEmail}`;
         }
         try{
             status = await this.bind(username, password);
             try {
-                user = await this.getUser(username);
+                user = await this.getUser(tempName);
                 console.log('+++++', user);
+                user = JSON.parse(user);
             } catch(err) {
                 console.log('Error', err);
             }
@@ -37,7 +40,7 @@ export class MjActiveDirectory {
             message = err;
             status = false;
         }
-        return {status, message};
+        return {status, message, user};
     }
 
     async bind(username: string, password: string): Promise<any> {
@@ -77,7 +80,7 @@ export class MjActiveDirectory {
                 });
                 res.on('end', result => {
                     if (!found) {
-                        reject('No record founf');
+                        reject('No record found');
                     }
                 });
                 
