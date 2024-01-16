@@ -5,7 +5,7 @@ import * as ldap from 'ldapjs';
 @Injectable()
 export class MjActiveDirectory {
 
-    private _ldapHost = '172.16.2.5';
+    private _ldapHost = '10.130.5.44';
     private _ldapPort = 389;
     private _domainEmail = 'metaljunction.com';
     private _primaryDomainEmail = 'mjunction.in';

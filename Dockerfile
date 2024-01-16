@@ -3,7 +3,7 @@ ARG NODE_VERSION=18
 FROM node:${NODE_VERSION}-alpine
 
 # Create app directory
-WORKDIR /usr/src/app/mj-notify/otp-service
+WORKDIR /usr/src/app/ad-login-service
 
 # Bundle app source
 COPY package*.json ./
