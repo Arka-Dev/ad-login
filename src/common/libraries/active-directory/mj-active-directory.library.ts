@@ -30,7 +30,7 @@ export class MjActiveDirectory {
             status = await this.bind(username, password);
             try {
                 user = await this.getUser(tempName);
-                console.log('+++++', user);
+                // console.log('+++++', user);
                 user = JSON.parse(user);
             } catch(err) {
                 console.log('Error', err);
@@ -58,7 +58,6 @@ export class MjActiveDirectory {
     }
 
     async getUser(username: string): Promise<any> {
-        console.log('Username:', username)
         const options = {
             scope: 'sub',
             // attributes: ['uid', 'dn', 'cn', 'mail'],
@@ -82,12 +81,8 @@ export class MjActiveDirectory {
                     if (!found) {
                         reject('No record found');
                     }
-                });
-                
+                });                
             });
-
-        });
-        
+        });        
     }
-
 }
